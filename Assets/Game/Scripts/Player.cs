@@ -20,6 +20,8 @@ public class Player : MonoBehaviour {
     private UIManager _uiManager;
     [SerializeField]
     public bool hasCoin = false;
+    [SerializeField]
+    private GameObject _weapon;
 
 	// Use this for initialization
 	void Start () {
@@ -70,6 +72,10 @@ public class Player : MonoBehaviour {
             Debug.Log("Hit: " + hitInfo.transform.name);
             GameObject hitmarker = Instantiate(_hitmarkerPrefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
             Destroy(hitmarker, 1f);
+
+            Destructable crate = hitInfo.transform.GetComponent<Destructable>();
+            if (crate != null)
+                crate.DestroyObject();
         }
     }
 
@@ -87,5 +93,9 @@ public class Player : MonoBehaviour {
         currentAmmo = maxAmmo;
         _uiManager.UpdateAmmo(currentAmmo);
         _isReloading = false;
+    }
+
+    public void EnableWeapon() {
+        _weapon.SetActive(true);
     }
 }
