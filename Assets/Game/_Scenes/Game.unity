@@ -142,6 +142,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &190600701 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1207245355615038, guid: 93fb048d0136f084cb1f783ca99e5ea7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1812542951}
 --- !u!1 &252833668
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +257,7 @@ MonoBehaviour:
   currentAmmo: 0
   hasCoin: 0
   _weapon: {fileID: 959404010}
+  hasWeapon: 0
 --- !u!114 &252833674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1013,6 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83a72b8aea789e4fbff8b70e58dfe75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weaponSold: {fileID: 190600701}
 --- !u!82 &847747693
 AudioSource:
   m_ObjectHideFlags: 0

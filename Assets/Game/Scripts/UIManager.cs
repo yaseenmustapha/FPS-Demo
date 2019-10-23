@@ -9,6 +9,10 @@ public class UIManager : MonoBehaviour {
     [SerializeField]
     private GameObject _coin;
 
+    private void Start() {
+        _ammoText.text = "Buy a weapon!";
+    }
+
     public void UpdateAmmo(int count) {
         _ammoText.text = "Ammo: " + count;
     }

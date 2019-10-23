@@ -15,13 +15,14 @@ public class Player : MonoBehaviour {
     private AudioSource _weaponAudio;
     [SerializeField]
     private int currentAmmo;
-    private int maxAmmo = 60;
+    private int maxAmmo = 300;
     private bool _isReloading = false;
     private UIManager _uiManager;
     [SerializeField]
     public bool hasCoin = false;
     [SerializeField]
     private GameObject _weapon;
+    public bool hasWeapon = false;
 
 	// Use this for initialization
 	void Start () {
@@ -32,26 +33,28 @@ public class Player : MonoBehaviour {
         currentAmmo = maxAmmo;
 
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-        _uiManager.UpdateAmmo(currentAmmo);
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
         CalculateMovement();
 
-        if (Input.GetMouseButton(0) && currentAmmo > 0 && !_isReloading) {
-            Shoot();
-        } else {
-            _muzzleFlash.SetActive(false);
-            _weaponAudio.Stop();
-        }
+        if (hasWeapon) {
+            if (Input.GetMouseButton(0) && currentAmmo > 0 && !_isReloading) {
+                Shoot();
+            }
+            else {
+                _muzzleFlash.SetActive(false);
+                _weaponAudio.Stop();
+            }
 
-        if ((Input.GetKeyDown(KeyCode.R) && currentAmmo < maxAmmo && !_isReloading) || currentAmmo == 0) {
-            _isReloading = true;
-            StartCoroutine(Reload());
+            if ((Input.GetKeyDown(KeyCode.R) && currentAmmo < maxAmmo && !_isReloading) || currentAmmo == 0) {
+                _isReloading = true;
+                StartCoroutine(Reload());
+            }
         }
-            
-
+        
         if (Input.GetKey(KeyCode.Escape)) {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -96,6 +99,8 @@ public class Player : MonoBehaviour {
     }
 
     public void EnableWeapon() {
+        _uiManager.UpdateAmmo(currentAmmo);
+        hasWeapon = true;
         _weapon.SetActive(true);
     }
 }

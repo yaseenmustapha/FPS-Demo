@@ -7,7 +7,7 @@ public class Coin : MonoBehaviour {
     private AudioClip _pickupClip;
 
     private void OnTriggerStay(Collider other) {
-        if (other.tag == "Player" && Input.GetKeyDown(KeyCode.E)) {
+        if (other.tag == "Player" && Input.GetKey(KeyCode.E)) {
             Player player = other.GetComponent<Player>();
             if (player != null) {
                 player.hasCoin = true;
