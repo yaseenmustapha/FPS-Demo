@@ -40,6 +40,11 @@ public class Player : MonoBehaviour {
 	void Update () {
         CalculateMovement();
 
+        if (Input.GetMouseButton(0) && Cursor.lockState == CursorLockMode.None) {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
         if (hasWeapon) {
             if (Input.GetMouseButton(0) && currentAmmo > 0 && !_isReloading) {
                 Shoot();
